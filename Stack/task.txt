@@ -1,0 +1,5 @@
+1. Boolean isStackFull()
+2. Boolean isStackEmpty()
+3. push(item)
+4. Element pop()
+
