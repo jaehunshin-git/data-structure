@@ -1,0 +1,5 @@
+MyIndex()
+MyInsert()
+MyRemove()
+MyCount()
+
