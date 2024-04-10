@@ -5,7 +5,7 @@ def myInsert(arr, index, x):
 
     temp.append(x)
 
-    for i in range(index, len(arr)):
+    for i in range(index-1, len(arr)):
         temp.append(arr[i])
     
     return temp
