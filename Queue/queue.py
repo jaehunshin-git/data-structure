@@ -64,15 +64,3 @@ q = Queue(3)
 q.enqueue(1)
 q.enqueue(2)
 q.enqueue(3)
-q.enqueue(4)
-
-q.printQueue()
-
-q.dequeue()
-
-q.printQueue()
-q.dequeue()
-q.dequeue()
-q.printQueue()
-q.dequeue()
-q.printQueue()

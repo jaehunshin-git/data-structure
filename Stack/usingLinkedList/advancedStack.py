@@ -30,16 +30,16 @@ class Stack():
             print("Stack is Empty. There is nothing to pop.")
             return
         else:
-            data = self.top.data
+            top = self.top
             self.top = self.top.next
-            return data
+            return top
         
     def peek(self):
         if self.isEmpty():
             print("Stack is Empty. There is nothing to peek.")
             return
         else:
-            return self.top.data
+            return self.top
     
     
     def printLinkedList(self):
