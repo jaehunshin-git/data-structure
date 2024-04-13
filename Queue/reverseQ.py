@@ -45,6 +45,7 @@ class Stack():
     def printLinkedList(self):
         ptr = self.top
 
+        if(self.isEmpty): print("Empty")
         while ptr is not None:
             print(ptr.data, end=" -> ")
             ptr = ptr.next
@@ -113,6 +114,8 @@ class Queue:
             self.rear.next = stack.pop()
             self.rear = self.rear.next
 
+        stack.printLinkedList()
+
 
 # Example usage:
 q = Queue(10)
@@ -135,4 +138,7 @@ q.reverseQ()
 q.printQueue()
 
 q.dequeue()
+q.printQueue()
+
+q.enqueue(20)
 q.printQueue()
