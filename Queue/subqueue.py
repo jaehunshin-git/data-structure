@@ -135,19 +135,11 @@ class Queue():
     
     def subqueue(self, q1, q2):
         if len(q1) >= len(q2):
-            stack = ArrayStack(len(q2))
-            current = q2.front
-            
-            while current is not None:
-                stack.push(current.data)
-                current = current.right
-            current = q1.front
+            temp = []
+            current
             
 
 
-        # 일단 시간복잡도 고려하지 않고 코딩하고 나서 리팩토링 해보자!
-        # 스택을 사용하는 방법
-        # 스택을 사용하지 않는 방법
         
                         
                                         
