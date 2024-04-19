@@ -30,7 +30,7 @@ def delete(index):
     
     current.link = current.link.link
 
-delete(3)
+delete(5)
 
 current = head
 

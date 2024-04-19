@@ -8,3 +8,4 @@ def Mypop ():
 print(a)
 print(Mypop())
 print(a)
+print(len(a))

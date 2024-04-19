@@ -30,6 +30,7 @@ class Stack():
             print("Stack is Empty. There is nothing to pop.")
             return
         else:
+            self.pushCount -= 1
             top = self.top
             self.top = self.top.next
             return top
@@ -50,7 +51,7 @@ class Stack():
             ptr = ptr.next
         print("none")
 
-stack = Stack(2)
+stack = Stack(5)
 stack.push(1)
 stack.push(2)
 stack.push(3)
@@ -61,7 +62,7 @@ stack.printLinkedList()
 stack.pop()
 stack.printLinkedList()
 
-print(stack.peek())
+print(stack.peek().data)
 stack.printLinkedList()
 
 
