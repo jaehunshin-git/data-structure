@@ -24,7 +24,7 @@ class CircularLinkedList():
                 current = current.next
             current.next = newNode
             newNode.next = self.head
-    
+
     def printList(self):
         if self.isEmpty():
             print("List is empty.")
@@ -36,9 +36,32 @@ class CircularLinkedList():
             while current is not self.head:
                 print(current.data)
                 current = current.next
-            # while current is not None:
-            #     print(current.data)
-            #     current = current.next
+
+    def pop(self):
+        current = self.head
+        if self.isEmpty():
+            print("LinkedList is Empty.")
+            return
+        elif current.next is self.head:
+            current.next = None
+            current.data = None
+            self.head = None
+        else:
+            
+
+    def len(self):
+        current = self.head
+        if current is None:
+            return 0
+        else:
+            n = 1
+            while current.next is not self.head:
+                n += 1
+                current = current.next
+
+            return n
+    
+            
 
 def len(list):
     current = list.head
@@ -54,6 +77,9 @@ def len(list):
             
 list = CircularLinkedList()
 list.push(0)
-list.push(0)
+list.push(1)
+list.push(2)
+list.push(3)
+list.push(4)
 
-print(len(list))
+print(list.len())
