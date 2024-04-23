@@ -47,6 +47,10 @@ class CircularLinkedList():
             current.data = None
             self.head = None
         else:
+            while current.next.next is not self.head:
+                current = current.next
+            current.next = self.head
+
             
 
     def len(self):
@@ -77,9 +81,6 @@ def len(list):
             
 list = CircularLinkedList()
 list.push(0)
-list.push(1)
-list.push(2)
-list.push(3)
-list.push(4)
 
-print(list.len())
+list.pop()
+list.printList()
