@@ -1,26 +1,23 @@
-def bin_search_recursive(data, target):
-    data.sort()
-
+def binarySearch(data, target):
     if len(data) == 0:
-        print("There is no target in the list.")
-        return None
+        print("Invalid data is given.")
+        return
 
-    low = 0
-    high = len(data) - 1
+    start = 0
+    end = len(data) - 1
 
-    if low > high:
-        print("Target not found in the list.")
-        return None
+    while start <= end:
+        mid = (start + end) // 2
+        midValue = data[mid]
 
-    mid = (low + high) // 2
-    mid_value = data[mid]
+        if midValue == target:
+            return True
+        elif midValue < target:
+            start = mid + 1
+        else:
+            end  = mid - 1
+    return False
 
-    if mid_value == target:
-        return mid_value
-    elif mid_value < target:
-        return bin_search_recursive(data[mid + 1:], target)
-    else:
-        return bin_search_recursive(data[:mid], target)
 
-data = [1, 3, 5, 7, 9, 11, 13]
-print(bin_search_recursive(data, 15))
+a= [1,2,3,4,5]
+print(binarySearch(a, 3))
