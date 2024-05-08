@@ -76,15 +76,9 @@ class BinarySearchTree():
     
         
 bst = BinarySearchTree()
-bst.iterativeAdd(5)
-bst.iterativeAdd(4)
-bst.iterativeAdd(3)
-bst.iterativeAdd(2)
-bst.iterativeAdd(1)
-bst.iterativeAdd(6)
-bst.iterativeAdd(7)
-bst.iterativeAdd(9)
-bst.iterativeAdd(8)
-bst.iterativeAdd(0)
+keyset = {5,2,3,8,9,6,7,0}
+for key in keyset:
+    bst.iterativeAdd(key)
+
 bst.dump()
                         
