@@ -1,5 +1,5 @@
-import sys
-sys.setrecursionlimit(100000)
+# import sys
+# sys.setrecursionlimit(100000)
 
 class Node():
     def __init__(self, key, value)-> None:
@@ -62,11 +62,12 @@ class BinarySearchTree():
 
     def preorderTraversal(self, node = False):
         if self.isEmpty():
-            print("Tree is Empty.")
+            print("Tree is Empty. Nothing to print.")
             return
         
         if node is False:
             node = self.root
+
         if node is None:
             return
         else:
@@ -75,31 +76,43 @@ class BinarySearchTree():
             self.preorderTraversal(node.right)
         
     def inorderTraversal(self, node = False):
+        if self.isEmpty():
+            print("Tree is Empty. Nothing to print.")
+            return
+        
         if node is False:
             node = self.root
+
         if node is None:
             return
-            
-        if node is not None:
-            self.preorderTraversal(node.left)
+        else:
+            self.inorderTraversal(node.left)
             print(f'{node.key}, {node.value}')
-            self.preorderTraversal(node.right)
+            self.inorderTraversal(node.right)
 
     def postorderTraversal(self, node = False):
+        if self.isEmpty():
+            print("Tree is Empty. Nothing to print.")
+            return
+        
         if node is False:
             node = self.root
+
         if node is None:
             return
-            
-        if node is not None:
-            self.preorderTraversal(node.left)
-            self.preorderTraversal(node.right)
+        else:
+            self.postorderTraversal(node.left)
+            self.postorderTraversal(node.right)
             print(f'{node.key}, {node.value}')
 
 bst = BinarySearchTree()
 
-keyset = {5,2,3,8,9,6,7,0}
+keyset = [5,2,3,8,9,6,7,0]
 for key in keyset:
     bst.iterativeAdd(key)
 
 bst.preorderTraversal()
+print()
+bst.inorderTraversal()
+print()
+bst.postorderTraversal()
