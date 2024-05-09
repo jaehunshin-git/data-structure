@@ -1,5 +1,5 @@
-# import sys
-# sys.setrecursionlimit(100000)
+from __future__ import annotations
+from typing import Any, Type
 
 class Node():
     def __init__(self, key, value)-> None:
@@ -104,6 +104,92 @@ class BinarySearchTree():
             self.postorderTraversal(node.left)
             self.postorderTraversal(node.right)
             print(f'{node.key}, {node.value}')
+            
+    def search(self, key):
+        if self.isEmpty():
+            print("Tree is Empty. Nothing to search.")
+            return
+        
+        current = self.root
+        prevCurrent = None
+        while current:
+            if key == current.key:
+                print(f'Found {key}')
+                return True, current, prevCurrent
+                # boolean , current node, prev node
+            elif key < current.key:
+                prevCurrent = current
+                current = current.left
+            else: # key > current.key
+                prevCurrent = current
+                current = current.right
+        
+        print(f'Cannot found {key} in the tree')
+        return False
+  
+    def countChild(self, node):
+        childCount = 0
+        
+        if node.left:
+            childCount += 1
+        if node.right:
+            childCount += 1
+            
+        return childCount 
+                  
+    def isLeftChild(self, childNode, parentNode) -> bool:
+        if parentNode.left is childNode:
+            return True
+        elif parentNode.right is childNode:
+            return False
+        else: # not a child or has 2 child
+            return -1
+        
+    def delete(self, key) -> bool:
+        # when tree is empty
+        if self.isEmpty():
+            return
+        
+        found, targetNode, parentNode = self.search(key)
+        
+        # when key is not in the tree
+        if not found:
+            print(f'There is no {key} in the tree.')
+            return
+        
+        # Case 1: targetNode is leaf = targetNode has no child
+        if not targetNode.left and not targetNode.right:
+            if parentNode:
+                if parentNode.left is targetNode:
+                    parentNode.left = None
+                else:
+                    parentNode.right = None
+            else:
+                self.root = None
+        
+        # Case 2: targetNode has just left child
+        elif targetNode.left and not targetNode.right:
+            if parentNode:
+                if parentNode.left is targetNode:
+                    parentNode.left = targetNode.left
+                else:
+                    parentNode.right = targetNode.left
+            else:
+                self.root = targetNode.left
+        
+        # Case 3: targetNode has just right child
+        elif not targetNode.left and targetNode.right:
+            if parentNode:
+                if parentNode.left is targetNode:
+                    parentNode.left = targetNode.right
+                else:
+                    parentNode.right = targetNode.right
+            else:
+                self.root = targetNode.right
+                
+        # Case 4: targetNode has 2 child
+        else:
+            pass
 
 bst = BinarySearchTree()
 
@@ -111,8 +197,4 @@ keyset = [5,2,3,8,9,6,7,0]
 for key in keyset:
     bst.iterativeAdd(key)
 
-bst.preorderTraversal()
-print()
-bst.inorderTraversal()
-print()
-bst.postorderTraversal()
+bst.search(5)
