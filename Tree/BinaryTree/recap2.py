@@ -60,14 +60,41 @@ class BinarySearchTree():
                 else:
                     current = current.right
 
-    def preorderTraversal(self, node = None):
-        if node is None:
+    def preorderTraversal(self, node = False):
+        if self.isEmpty():
+            print("Tree is Empty.")
+            return
+        
+        if node is False:
             node = self.root
-
-        if node is not None:
-            print(node.key)
+        if node is None:
+            return
+        else:
+            print(f'{node.key}, {node.value}')
             self.preorderTraversal(node.left)
             self.preorderTraversal(node.right)
+        
+    def inorderTraversal(self, node = False):
+        if node is False:
+            node = self.root
+        if node is None:
+            return
+            
+        if node is not None:
+            self.preorderTraversal(node.left)
+            print(f'{node.key}, {node.value}')
+            self.preorderTraversal(node.right)
+
+    def postorderTraversal(self, node = False):
+        if node is False:
+            node = self.root
+        if node is None:
+            return
+            
+        if node is not None:
+            self.preorderTraversal(node.left)
+            self.preorderTraversal(node.right)
+            print(f'{node.key}, {node.value}')
 
 bst = BinarySearchTree()
 
