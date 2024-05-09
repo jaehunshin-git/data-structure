@@ -62,23 +62,12 @@ class BinarySearchTree():
         
         return False
     
-    def dump(self) -> None:
-        """덤프(모든 노드를 키의 오름차순으로 출력)"""
-
-        def print_subtree(node: Node):
-            """node를 루트로 하는 서브 트리의 노드를 키의 오름차순으로 출력"""
-            if node is not None:
-                print_subtree(node.left)            # 왼쪽 서브 트리를 오름차순으로 출력
-                print(f'{node.key}  {node.value}')  # node를 출력
-                print_subtree(node.right)           # 오른쪽 서브 트리를 오름차순으로 출력
-
-        print_subtree(self.root)
+    
     
         
 bst = BinarySearchTree()
-keyset = {5,2,3,8,9,6,7,0}
+keyset = [5,2,3,8,9,6,7,0]
 for key in keyset:
     bst.iterativeAdd(key)
 
-bst.dump()
                         
