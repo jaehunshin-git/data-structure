@@ -12,10 +12,10 @@ class BinarySearchTree():
     def __init__(self) -> None:
         self.root = None
     
-    def isEmpty(self) -> bool:
+    def is_Empty(self) -> bool:
         return self.root is None
     
-    def recursiveAdd(self, key, value = None) -> None:
+    def recursive_add(self, key, value = None) -> None:
         def node_add(node, key, value) -> None:
             if key == node.key:
                 print("Key Repetition Detected. Updating Value.")
@@ -31,13 +31,13 @@ class BinarySearchTree():
                 else:
                     node_add(node.right, key, value)
 
-        if self.isEmpty():
+        if self.is_Empty():
             self.root = Node(key, value)
         else:
             node_add(self.root, key, value)
 
-    def iterativeAdd(self, key, value = None) -> None:
-        if self.isEmpty():
+    def iterative_add(self, key, value = None) -> None:
+        if self.is_Empty():
             self.root = Node(key, value)
             return
         
@@ -60,8 +60,8 @@ class BinarySearchTree():
                 else:
                     current = current.right
 
-    def preorderTraversal(self, node = False):
-        if self.isEmpty():
+    def preorder_traversal(self, node = False):
+        if self.is_Empty():
             print("Tree is Empty. Nothing to print.")
             return
         
@@ -72,11 +72,11 @@ class BinarySearchTree():
             return
         else:
             print(f'{node.key}, {node.value}')
-            self.preorderTraversal(node.left)
-            self.preorderTraversal(node.right)
+            self.preorder_traversal(node.left)
+            self.preorder_traversal(node.right)
         
-    def inorderTraversal(self, node = False):
-        if self.isEmpty():
+    def inorder_traversal(self, node = False):
+        if self.is_Empty():
             print("Tree is Empty. Nothing to print.")
             return
         
@@ -86,12 +86,12 @@ class BinarySearchTree():
         if node is None:
             return
         else:
-            self.inorderTraversal(node.left)
+            self.inorder_traversal(node.left)
             print(f'{node.key}, {node.value}')
-            self.inorderTraversal(node.right)
+            self.inorder_traversal(node.right)
 
-    def postorderTraversal(self, node = False):
-        if self.isEmpty():
+    def postorder_traversal(self, node = False):
+        if self.is_Empty():
             print("Tree is Empty. Nothing to print.")
             return
         
@@ -101,100 +101,127 @@ class BinarySearchTree():
         if node is None:
             return
         else:
-            self.postorderTraversal(node.left)
-            self.postorderTraversal(node.right)
+            self.postorder_traversal(node.left)
+            self.postorder_traversal(node.right)
             print(f'{node.key}, {node.value}')
             
     def search(self, key):
-        if self.isEmpty():
+        if self.is_Empty():
             print("Tree is Empty. Nothing to search.")
             return
         
         current = self.root
-        prevCurrent = None
+        prev_current = None
         while current:
             if key == current.key:
                 print(f'Found {key}')
-                return True, current, prevCurrent
+                return True, current, prev_current
                 # boolean , current node, prev node
             elif key < current.key:
-                prevCurrent = current
+                prev_current = current
                 current = current.left
             else: # key > current.key
-                prevCurrent = current
+                prev_current = current
                 current = current.right
         
         print(f'Cannot found {key} in the tree')
         return False
   
-    def countChild(self, node):
-        childCount = 0
+    # def count_child(self, node):
+    #     childCount = 0
         
-        if node.left:
-            childCount += 1
-        if node.right:
-            childCount += 1
+    #     if node.left:
+    #         childCount += 1
+    #     if node.right:
+    #         childCount += 1
             
-        return childCount 
+    #     return childCount 
                   
-    def isLeftChild(self, childNode, parentNode) -> bool:
-        if parentNode.left is childNode:
-            return True
-        elif parentNode.right is childNode:
-            return False
-        else: # not a child or has 2 child
-            return -1
+    # def is_left_child(self, childNode, parentNode) -> bool:
+    #     if parentNode.left is childNode:
+    #         return True
+    #     elif parentNode.right is childNode:
+    #         return False
+    #     else: # not a child or has 2 child
+    #         return -1
         
-    def delete(self, key) -> bool:
+    def remove(self, key) -> bool:
         # when tree is empty
-        if self.isEmpty():
+        if self.is_Empty():
             return
         
-        found, targetNode, parentNode = self.search(key)
+        found, target_node, parent_node = self.search(key)
         
         # when key is not in the tree
         if not found:
             print(f'There is no {key} in the tree.')
             return
         
-        # Case 1: targetNode is leaf = targetNode has no child
-        if not targetNode.left and not targetNode.right:
-            if parentNode:
-                if parentNode.left is targetNode:
-                    parentNode.left = None
+        # Case 1: target_node is leaf = target_node has no child
+        if not target_node.left and not target_node.right:
+            if parent_node:
+                if parent_node.left is target_node:
+                    parent_node.left = None
                 else:
-                    parentNode.right = None
+                    parent_node.right = None
             else:
                 self.root = None
         
-        # Case 2: targetNode has just left child
-        elif targetNode.left and not targetNode.right:
-            if parentNode:
-                if parentNode.left is targetNode:
-                    parentNode.left = targetNode.left
+        # Case 2: target_node has just left child
+        elif target_node.left and not target_node.right:
+            if parent_node:
+                if parent_node.left is target_node:
+                    parent_node.left = target_node.left
                 else:
-                    parentNode.right = targetNode.left
+                    parent_node.right = target_node.left
             else:
-                self.root = targetNode.left
+                self.root = target_node.left
         
-        # Case 3: targetNode has just right child
-        elif not targetNode.left and targetNode.right:
-            if parentNode:
-                if parentNode.left is targetNode:
-                    parentNode.left = targetNode.right
+        # Case 3: target_node has just right child
+        elif not target_node.left and target_node.right:
+            if parent_node:
+                if parent_node.left is target_node:
+                    parent_node.left = target_node.right
                 else:
-                    parentNode.right = targetNode.right
+                    parent_node.right = target_node.right
             else:
-                self.root = targetNode.right
+                self.root = target_node.right
                 
-        # Case 4: targetNode has 2 child
+        # Case 4: target_node has 2 child
+        # Method 1: replace target_node with the predecessor
+        # Method 2: replace target_node with the successor
         else:
-            pass
+            # Method 2
+            
+            # find successor of the target_node and successor_parent
+            successor_parent = None
+            successor = target_node.right
+            while successor.left:
+                successor_parent = successor
+                successor = successor.left
+                
+            # replace the key and value of the target_node to successor's
+            target_node.key = successor.key
+            target_node.value = successor.value 
+            
+            # delete the original successor node.
+            # original successor node can be leaf node or has one right child
+            if successor_parent.left == successor:
+                successor_parent.left = successor.right
+            else:
+                successor_parent.right = successor.right
+            
+        
+            
+            
+                
+            
+            
 
 bst = BinarySearchTree()
 
 keyset = [5,2,3,8,9,6,7,0]
 for key in keyset:
-    bst.iterativeAdd(key)
+    bst.iterative_add(key)
 
-bst.search(5)
+# bst.search(5)
