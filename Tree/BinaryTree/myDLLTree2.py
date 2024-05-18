@@ -224,4 +224,6 @@ keyset = [5,2,3,8,9,6,7,0]
 for key in keyset:
     bst.iterative_add(key)
 
-# bst.search(5)
+bst.search(5)
+bst.remove(5)
+bst.search(5)
