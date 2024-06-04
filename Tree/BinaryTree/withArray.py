@@ -1,29 +1,30 @@
 class BinaryTree:
     def __init__(self, size):
         self.MAX_SIZE = size
-        self.tree = [None] * size
+        # Start with an array filled with None, with the first element unused
+        self.tree = [None] * (self.MAX_SIZE + 1)
 
     def insert(self, value):
-        if self.tree[0] is None:
-            self.tree[0] = value
+        if self.tree[1] is None:
+            self.tree[1] = value
         else:
-            self._insert_recursive(value, 0)
+            self._insert_recursive(value, 1)
 
     def _insert_recursive(self, value, index):
-        if index >= self.MAX_SIZE:
+        if index > self.MAX_SIZE:
             print("Tree is full")
             return
 
         if self.tree[index] is None:
             self.tree[index] = value
         elif value <= self.tree[index]:
-            self._insert_recursive(value, 2 * index + 1)
+            self._insert_recursive(value, 2 * index)
         else:
-            self._insert_recursive(value, 2 * index + 2)
+            self._insert_recursive(value, 2 * index + 1)
 
     def display(self):
-        print(self.tree)
-
+        # Display the tree, skipping the first unused element
+        print(self.tree[1:])
 
 # Example usage:
 tree = BinaryTree(10)
