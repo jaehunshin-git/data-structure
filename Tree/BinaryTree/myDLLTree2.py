@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import Any, Type
+import random
 
 class Node():
     def __init__(self, key, value=None) -> None:
@@ -11,6 +12,9 @@ class Node():
 class BinarySearchTree():
     def __init__(self) -> None:
         self.root = None
+    
+    def get_root(self) -> Node:
+        return self.root
     
     def is_empty(self) -> bool:
         return self.root is None
@@ -214,6 +218,7 @@ class BinarySearchTree():
         return current.key, current.value
     
     def find_min(self, node=None):
+
         if self.is_empty():
             print("Tree is Empty.")
             return None
@@ -223,8 +228,21 @@ class BinarySearchTree():
             current = current.left
 
         return current.key, current.value
-
     
+    def get_height(self, node = None):
+        pass
+    
+def merge_bst(aBST, bBST):
+    pass
+    # 가정: aBST의 모든 원소 < x < bBST의 모든 원소
+    # 어떤 bst 가 작은 트리인지 판별해야함.
+    # 위의 가정대로라면 root 끼리 비교하면 뭐가 큰 트리인지 알수 있다.
+
+    # if aBST.find_max() < bBST.get_root().key:
+    # newKey = random.randrange(aBST.find_max() + 1, bBST.find_min())
+
+
+
 
 bst = BinarySearchTree()
 
