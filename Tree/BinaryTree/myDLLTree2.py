@@ -12,7 +12,7 @@ class BinarySearchTree():
     def __init__(self) -> None:
         self.root = None
     
-    def is_Empty(self) -> bool:
+    def is_empty(self) -> bool:
         return self.root is None
     
     def recursive_add(self, key, value=None) -> None:
@@ -31,13 +31,13 @@ class BinarySearchTree():
                 else:
                     node_add(node.right, key, value)
 
-        if self.is_Empty():
+        if self.is_empty():
             self.root = Node(key, value)
         else:
             node_add(self.root, key, value)
 
     def iterative_add(self, key, value=None) -> None:
-        if self.is_Empty():
+        if self.is_empty():
             self.root = Node(key, value)
             return
 
@@ -60,12 +60,12 @@ class BinarySearchTree():
                 else:
                     current = current.right
 
-    def preorder_traversal(self, node=None):
-        if self.is_Empty():
+    def preorder_traversal(self, node = False) -> None:
+        if self.is_empty():
             print("Tree is Empty. Nothing to print.")
             return
-
-        if node is None:
+        
+        if node is False:
             node = self.root
 
         if node is not None:
@@ -73,12 +73,12 @@ class BinarySearchTree():
             self.preorder_traversal(node.left)
             self.preorder_traversal(node.right)
         
-    def inorder_traversal(self, node=None):
-        if self.is_Empty():
+    def inorder_traversal(self, node = False) -> None:
+        if self.is_empty():
             print("Tree is Empty. Nothing to print.")
             return
-
-        if node is None:
+        
+        if node is False:
             node = self.root
 
         if node is not None:
@@ -86,44 +86,43 @@ class BinarySearchTree():
             print(f'{node.key}, {node.value}')
             self.inorder_traversal(node.right)
 
-    def postorder_traversal(self, node=None):
-        if self.is_Empty():
+    def postorder_traversal(self, node = False) -> None:
+        if self.is_empty():
             print("Tree is Empty. Nothing to print.")
             return
-
-        if node is None:
+        
+        if node is False:
             node = self.root
 
         if node is not None:
             self.postorder_traversal(node.left)
             self.postorder_traversal(node.right)
             print(f'{node.key}, {node.value}')
-            
+
     def search(self, key):
-        if self.is_Empty():
+        if self.is_empty():
             print("Tree is Empty. Nothing to search.")
             return False, None, None
         
         current = self.root
-        prev_current = None
+        parent = None
         while current:
             if key == current.key:
                 print(f'Found {key}')
-                return True, current, prev_current
-                # boolean , current node, prev node
+                return True, current, parent
             elif key < current.key:
-                prev_current = current
+                parent = current
                 current = current.left
-            else: # key > current.key
-                prev_current = current
+            else:  # key > current.key
+                parent = current
                 current = current.right
         
-        print(f'Cannot found {key} in the tree')
+        print(f'Cannot find {key} in the tree')
         return False, None, None
   
     def delete(self, key) -> bool:
         # when tree is empty
-        if self.is_Empty():
+        if self.is_empty():
             print("Tree is Empty. Nothing to remove.")
             return False
         
@@ -204,7 +203,7 @@ class BinarySearchTree():
         return True
 
     def find_max(self, node=None):
-        if self.is_Empty():
+        if self.is_empty():
             print("Tree is Empty.")
             return None
         
@@ -215,7 +214,7 @@ class BinarySearchTree():
         return current.key, current.value
     
     def find_min(self, node=None):
-        if self.is_Empty():
+        if self.is_empty():
             print("Tree is Empty.")
             return None
         
@@ -225,6 +224,7 @@ class BinarySearchTree():
 
         return current.key, current.value
 
+    
 
 bst = BinarySearchTree()
 
@@ -245,3 +245,7 @@ bst.postorder_traversal()
 # Finding the maximum value in the tree
 max_key, max_value = bst.find_max()
 print(f"\nMaximum key in the tree: {max_key}, value: {max_value}")
+
+min_key, min_value = bst.find_min()
+print(f"\nMinimum key in the tree: {min_key}, value: {min_value}")
+
